@@ -53,6 +53,15 @@ describe "Mutations::ArrayFilter" do
     assert_equal [1,"bob"], filtered
   end
 
+  it "lets you specify a class, and lets you supply a subclass" do
+    class Fixed < Fixnum; end
+    
+    f = Mutations::ArrayFilter.new(:arr, :class => Fixnum)
+    filtered, errors = f.filter([1,2,3])
+    assert_equal nil, errors
+    assert_equal [1,2,3], filtered
+  end
+
   it "lets you use a block to supply an element filter" do
     f = Mutations::ArrayFilter.new(:arr) { string }
 

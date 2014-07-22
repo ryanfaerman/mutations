@@ -84,7 +84,7 @@ module Mutations
         class_const = options[:class]
         class_const = class_const.constantize if class_const.is_a?(String)
 
-        if !data.is_a?(class_const)
+        if !data.kind_of?(class_const)
           return [data, :class]
         end
       end
